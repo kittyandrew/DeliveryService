@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryService", "Delivery
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryService.Model", "..\DeliveryService.Model\DeliveryService.Model.csproj", "{2B66F804-1C24-4DF4-9A90-7A76B6183B2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryService.Dao", "..\DeliveryService.Dao\DeliveryService.Dao.csproj", "{21408757-7CD5-4649-BA8D-52D061A0B8A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryService.Logic", "..\DeliveryService.Logic\DeliveryService.Logic.csproj", "{A2836FA4-9B27-4C83-A970-AF2EB568428D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,5 +23,13 @@ Global
 		{2B66F804-1C24-4DF4-9A90-7A76B6183B2A}.Debug|x86.Build.0 = Debug|Any CPU
 		{2B66F804-1C24-4DF4-9A90-7A76B6183B2A}.Release|x86.ActiveCfg = Release|Any CPU
 		{2B66F804-1C24-4DF4-9A90-7A76B6183B2A}.Release|x86.Build.0 = Release|Any CPU
+		{21408757-7CD5-4649-BA8D-52D061A0B8A2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{21408757-7CD5-4649-BA8D-52D061A0B8A2}.Debug|x86.Build.0 = Debug|Any CPU
+		{21408757-7CD5-4649-BA8D-52D061A0B8A2}.Release|x86.ActiveCfg = Release|Any CPU
+		{21408757-7CD5-4649-BA8D-52D061A0B8A2}.Release|x86.Build.0 = Release|Any CPU
+		{A2836FA4-9B27-4C83-A970-AF2EB568428D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A2836FA4-9B27-4C83-A970-AF2EB568428D}.Debug|x86.Build.0 = Debug|Any CPU
+		{A2836FA4-9B27-4C83-A970-AF2EB568428D}.Release|x86.ActiveCfg = Release|Any CPU
+		{A2836FA4-9B27-4C83-A970-AF2EB568428D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
