@@ -10,12 +10,12 @@ namespace DeliveryService.Model
         public int    Size { get; private set; }
         public int    Weight { get; private set; }
 
-        public Product(ProductType Type, string Name, int Size, int Weight)
+        public Product(ProductType type, string name, int size, int weight)
         {
-            this.Type = Type;
-            this.Name = Name;
-            this.Size = Size;
-            this.Weight = Weight;
+            this.Type = type;
+            this.Name = name;
+            this.Size = size;
+            this.Weight = weight;
         }
 
         public override string ToString()

@@ -14,10 +14,12 @@ namespace DeliveryService.Model
         public int WeightTaken { get; }
         public int Speed { get; private set; }
 
-        public Transport(TransportType TransportType, int Speed)
+        public Transport(TransportType transportType, int speed)
         {
-            this.TransportType = TransportType;
-            this.Speed = Speed;
+            this.TransportType = transportType;
+            this.Speed = speed;
+
+            DeliveryPlaces = new List<DeliveryPlace>();
         }
     }
 }
