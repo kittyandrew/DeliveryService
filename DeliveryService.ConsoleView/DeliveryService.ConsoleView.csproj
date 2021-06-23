@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2B66F804-1C24-4DF4-9A90-7A76B6183B2A}</ProjectGuid>
+    <ProjectGuid>{86AC2717-5246-4403-BA33-E6125C63E3A4}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DeliveryService.Model</RootNamespace>
-    <AssemblyName>DeliveryService.Model</AssemblyName>
+    <RootNamespace>DeliveryService.ConsoleView</RootNamespace>
+    <AssemblyName>DeliveryService.ConsoleView</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -28,16 +28,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductType.cs" />
-    <Compile Include="TransportType.cs" />
-    <Compile Include="Base.cs" />
-    <Compile Include="Transport.cs" />
-    <Compile Include="DeliveryPlace.cs" />
+    <Compile Include="AddProductView.cs" />
+    <Compile Include="AddDeliveryView.cs" />
+    <Compile Include="BaseView.cs" />
+    <Compile Include="MainMenuView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeliveryService.Dao\DeliveryService.Dao.csproj">
+      <Project>{21408757-7CD5-4649-BA8D-52D061A0B8A2}</Project>
+      <Name>DeliveryService.Dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeliveryService.Logic\DeliveryService.Logic.csproj">
+      <Project>{A2836FA4-9B27-4C83-A970-AF2EB568428D}</Project>
+      <Name>DeliveryService.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeliveryService.Model\DeliveryService.Model.csproj">
+      <Project>{2B66F804-1C24-4DF4-9A90-7A76B6183B2A}</Project>
+      <Name>DeliveryService.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -28,10 +28,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransportProc.cs" />
+    <Compile Include="DeliveryProc.cs" />
+    <Compile Include="IDeliveryProc.cs" />
+    <Compile Include="IProductProc.cs" />
+    <Compile Include="ProductProc.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DeliveryService.Model\DeliveryService.Model.csproj">

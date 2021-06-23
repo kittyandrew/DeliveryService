@@ -4,6 +4,6 @@ namespace DeliveryService.Model
 {
     public abstract class Base
     {
-        public Guid Id { get; private set; } = new Guid();
+        public Guid Id { get; } = Guid.NewGuid();
     }
 }

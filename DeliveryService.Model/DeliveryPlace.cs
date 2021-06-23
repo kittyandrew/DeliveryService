@@ -6,8 +6,8 @@ namespace DeliveryService.Model
 {
     public class DeliveryPlace : Base
     {
-        public int Distance { get; private set; }
-        public List<Product> Products { get; }
+        private int Distance { get; }
+        private List<Product> Products { get; }
 
         public DeliveryPlace(List<Product> products, int distance)
         {
@@ -27,7 +27,7 @@ namespace DeliveryService.Model
 
         public override string ToString()
         {
-            return "DeliveryPlace(Products='" + Products.Count + " Items', Distance=" + Distance + ")";
+            return $"DeliveryPlace(Id={Id}, Products='{Products.Count} Items', Distance={Distance})";
         }
     }
 }

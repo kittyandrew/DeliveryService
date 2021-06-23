@@ -48,6 +48,15 @@
       <Project>{A2836FA4-9B27-4C83-A970-AF2EB568428D}</Project>
       <Name>DeliveryService.Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DeliveryService.ConsoleView\DeliveryService.ConsoleView.csproj">
+      <Project>{86AC2717-5246-4403-BA33-E6125C63E3A4}</Project>
+      <Name>DeliveryService.ConsoleView</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <Link>Properties\app.config</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

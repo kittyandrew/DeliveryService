@@ -9,6 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryService.Dao", "..\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryService.Logic", "..\DeliveryService.Logic\DeliveryService.Logic.csproj", "{A2836FA4-9B27-4C83-A970-AF2EB568428D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8898E173-BCB3-42B3-AD5B-AC8A26103AEB}"
+	ProjectSection(SolutionItems) = preProject
+		app.config = app.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryService.ConsoleView", "..\DeliveryService.ConsoleView\DeliveryService.ConsoleView.csproj", "{86AC2717-5246-4403-BA33-E6125C63E3A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -31,5 +38,9 @@ Global
 		{A2836FA4-9B27-4C83-A970-AF2EB568428D}.Debug|x86.Build.0 = Debug|Any CPU
 		{A2836FA4-9B27-4C83-A970-AF2EB568428D}.Release|x86.ActiveCfg = Release|Any CPU
 		{A2836FA4-9B27-4C83-A970-AF2EB568428D}.Release|x86.Build.0 = Release|Any CPU
+		{86AC2717-5246-4403-BA33-E6125C63E3A4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{86AC2717-5246-4403-BA33-E6125C63E3A4}.Debug|x86.Build.0 = Debug|Any CPU
+		{86AC2717-5246-4403-BA33-E6125C63E3A4}.Release|x86.ActiveCfg = Release|Any CPU
+		{86AC2717-5246-4403-BA33-E6125C63E3A4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
