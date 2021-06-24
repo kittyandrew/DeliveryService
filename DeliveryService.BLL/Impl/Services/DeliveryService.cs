@@ -8,12 +8,12 @@ using DeliveryService.BLL.Impl.Mappers;
 
 namespace DeliveryService.BLL.Impl.Services
 {
-    public class ADeliveryService : IDeliveryService
+    public class MainDeliveryService : IDeliveryService
     {
         private readonly IUnitOfWork UnitOfWork;
         private readonly ITransportService TransportService;
 
-        public ADeliveryService(IUnitOfWork unitOfWork, ITransportService transportService)
+        public MainDeliveryService(IUnitOfWork unitOfWork, ITransportService transportService)
         {
             UnitOfWork = unitOfWork;
             TransportService = transportService;

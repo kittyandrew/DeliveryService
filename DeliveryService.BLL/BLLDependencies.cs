@@ -8,7 +8,7 @@ namespace DeliveryService.BLL
     {
         public static IServiceCollection RegisterBLLDependencies(this IServiceCollection services)
         {
-            services.AddSingleton<IDeliveryService, ADeliveryService>();
+            services.AddSingleton<IDeliveryService, MainDeliveryService>();
             services.AddSingleton<IProductService, ProductService>();
             services.AddSingleton<ITransportService, TransportService>();
             return services;
