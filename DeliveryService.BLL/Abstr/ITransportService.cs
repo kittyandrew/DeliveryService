@@ -6,6 +6,6 @@ namespace DeliveryService.BLL.Abstr
     public interface ITransportService
     {
         Transport GetSuitableTransport(ProductType productType);
-        TimeSpan GetDeliveryTimeMinutes(Place place, Transport transport);
+        TimeSpan GetDeliveryTime(Place place, Transport transport);
     }
 }

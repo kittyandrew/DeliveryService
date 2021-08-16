@@ -8,7 +8,9 @@ namespace DeliveryService.BLL.Impl.Mappers
         public static Place ModelToEntity(this PlaceModel placeModel)
         {
             return new Place
-            { 
+            {
+                Id = placeModel.Id,
+                Name = placeModel.Name,
                 Distance = placeModel.Distance,
                 Traffic = placeModel.Traffic
             };
@@ -18,6 +20,8 @@ namespace DeliveryService.BLL.Impl.Mappers
         {
             return new PlaceModel
             {
+                Id = place.Id,
+                Name = place.Name,
                 Distance = place.Distance,
                 Traffic = place.Traffic
             };

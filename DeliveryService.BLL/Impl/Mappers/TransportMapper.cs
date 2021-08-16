@@ -13,8 +13,6 @@ namespace DeliveryService.BLL.Impl.Mappers
                 FreeBy = transportModel.FreeBy,
                 TransportTypeId = transportModel.TransportTypeModel.Id,
                 TransportType = TransportTypeMapper.ModelToEntity(transportModel.TransportTypeModel),
-                ProductId = transportModel.ProductModel.Id,
-                Product = ProductMapper.ModelToEntity(transportModel.ProductModel)
             };
         }
 
@@ -25,7 +23,6 @@ namespace DeliveryService.BLL.Impl.Mappers
                 Id = transport.Id,
                 FreeBy = transport.FreeBy,
                 TransportTypeModel = TransportTypeMapper.EntityToModel(transport.TransportType),
-                ProductModel = ProductMapper.EntityToModel(transport.Product)
             };
         }
     }

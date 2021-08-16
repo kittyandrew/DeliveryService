@@ -13,9 +13,9 @@ namespace DeliveryService.BLL.Impl.Mappers
                 DeliveryTime = deliveryModel.DeliveryTime,
                 PlaceId = deliveryModel.PlaceModel.Id,
                 Place = PlaceMapper.ModelToEntity(deliveryModel.PlaceModel),
-                TransportId = deliveryModel.PlaceModel.Id,
+                TransportId = deliveryModel.TransportModel.Id,
                 Transport = TransportMapper.ModelToEntity(deliveryModel.TransportModel),
-                ProductId = deliveryModel.PlaceModel.Id,
+                ProductId = deliveryModel.ProductModel.Id,
                 Product = ProductMapper.ModelToEntity(deliveryModel.ProductModel),
             };
         }

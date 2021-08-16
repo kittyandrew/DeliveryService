@@ -4,8 +4,9 @@ using DeliveryService.Model;
 
 namespace DeliveryService.BLL.Abstr
 {
-    public interface IProductService
+    public interface IPlaceService
     {
-        ICollection<ProductModel> GetAllProducts();
+        ICollection<PlaceModel> GetAllPlaces();
+
     }
 }
