@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Data.Entity;
 using DeliveryService.Entity;
-using DeliveryService.Model;
 
 namespace DeliveryService.DAL.Impl.EF
 {
@@ -13,19 +13,8 @@ namespace DeliveryService.DAL.Impl.EF
         public DbSet<Transport> Transports { get; set; }
         public DbSet<TransportType> TransportTypes { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=DeliveryServiceDB.db;");
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<DeliveryModel>().ToTable("Deliveries");
-            modelBuilder.Entity<PlaceModel>().ToTable("Places");
-            modelBuilder.Entity<ProductModel>().ToTable("Products");
-            modelBuilder.Entity<ProductTypeModel>().ToTable("ProductTypes");
-            modelBuilder.Entity<TransportModel>().ToTable("Transports");
-            modelBuilder.Entity<TransportTypeModel>().ToTable("TransportTypes");
+        public DeliveryServiceContext() : base("Server=localhost;Database=DeliveryService;Trusted_Connection=True;") {
+            Database.SetInitializer<DeliveryServiceContext>(new DbInitializer());
         }
     }
 }

@@ -10,7 +10,6 @@ namespace DeliveryService.Model
 
         [ForeignKey("TransportTypeId")]
         public TransportTypeModel TransportTypeModel { get; set; }
-        [ForeignKey("ProductId")]
-        public ProductModel ProductModel { get; set; }
+        public int TransportTypeId { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace DeliveryService.Model
 
         [ForeignKey("TransportTypeId")]
         public TransportTypeModel TransportTypeModel { get; set; }
+        public int TransportTypeId { get; set; }
     }
 }

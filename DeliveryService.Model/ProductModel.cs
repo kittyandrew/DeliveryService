@@ -7,11 +7,12 @@ namespace DeliveryService.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Size { get; set; }
-        public int Weight { get; set; }
+        public double Size { get; set; }
+        public double Weight { get; set; }
 
         [ForeignKey("ProductTypeId")]
         public ProductTypeModel ProductTypeModel { get; set; }
+        public int ProductTypeId { get; set; }
     }
 }
 

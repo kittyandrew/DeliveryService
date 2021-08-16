@@ -6,10 +6,8 @@ namespace DeliveryService.Entity
     {
         public DateTime FreeBy { get; set; }
 
-        public int TransportTypeId { get; set; }
+        public int? TransportTypeId { get; set; }
         public virtual TransportType TransportType { get; set; }
-        public int ProductId { get; set; }
-        public virtual Product Product { get; set; }
 
         public override string ToString()
         {

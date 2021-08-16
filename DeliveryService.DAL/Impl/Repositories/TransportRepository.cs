@@ -3,6 +3,7 @@ using DeliveryService.DAL.Impl.Repositories;
 using DeliveryService.DAL.Impl.EF;
 using DeliveryService.Entity;
 using System.Linq;
+using System;
 
 namespace DeliveryService.DAL.Abstr.Repositories
 {
@@ -15,7 +16,7 @@ namespace DeliveryService.DAL.Abstr.Repositories
 
         public Transport GetFirstFree(TransportType transportType)
         {
-            return DbSet.Where(t => t.TransportType == transportType).OrderBy(t => t.FreeBy).First();
+            return DbSet.Where(t => t.TransportType.Id == transportType.Id).OrderBy(t => t.FreeBy).First();
         }
     }
 }

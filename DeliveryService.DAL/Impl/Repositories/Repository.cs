@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DeliveryService.DAL.Abstr.Repositories;
 using DeliveryService.DAL.Impl.EF;
 using DeliveryService.Entity;
+using System.Data.Entity;
 using System.Linq;
 
 namespace DeliveryService.DAL.Impl.Repositories
@@ -41,7 +41,8 @@ namespace DeliveryService.DAL.Impl.Repositories
 
         public virtual void Delete(TEntity entity)
         {
-            DbSet.Remove(entity);
+            TEntity find = Get(entity.Id);
+            DbSet.Remove(find);
         }
     }
 
