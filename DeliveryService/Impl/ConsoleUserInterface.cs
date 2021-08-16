@@ -53,14 +53,35 @@ namespace DeliveryService.Impl
                         _consoleWriter.ShowPlaces(places);
                         break;
                     case '3':
-                        int productId = _consoleReader.GetProductId();
+                        int productId;
+                        try
+                        {
+                            productId = _consoleReader.GetProductId();
+                        }
+                        catch (Exception e) when (e is FormatException || e is OverflowException)
+                        {
+                            _consoleWriter.Warn("Entered value is an unacceptable product ID");
+                            break;
+                        };
+
                         IEnumerable<ProductModel> _product = products.Where(p => p.Id == productId);
                         if (!_product.Any())
                         {
                             _consoleWriter.Warn("Could not find a product with such ID");
                             break;
                         }
-                        int placeId = _consoleReader.GetPlaceId();
+
+                        int placeId;
+                        try
+                        {
+                            placeId = _consoleReader.GetPlaceId();
+                        }
+                        catch (Exception e) when (e is FormatException || e is OverflowException)
+                        {
+                            _consoleWriter.Warn("Entered value is an unacceptable place ID");
+                            break;
+                        };
+                        
                         IEnumerable<PlaceModel> _place = places.Where(p => p.Id == placeId);
                         if (!_place.Any())
                         {

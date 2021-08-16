@@ -15,9 +15,9 @@ namespace DeliveryService.Impl
             Console.WriteLine("\nChoose option: ");
             Console.WriteLine("1: Get all products");
             Console.WriteLine("2: Get all places");
-            Console.WriteLine("3. Order a delivery");
-            Console.WriteLine("4. Show my delivery");
-            Console.WriteLine("5. Cancel my delivery");
+            Console.WriteLine("3: Order a delivery");
+            Console.WriteLine("4: Show my delivery");
+            Console.WriteLine("5: Cancel my delivery");
             Console.WriteLine("q: Exit application");
         }
 
