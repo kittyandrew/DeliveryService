@@ -98,12 +98,12 @@ namespace DeliveryService.GUI.ViewModel
 
         private string DisplayDelivery(DeliveryModel deliveryModel)
         {
-            return "Arives at:".PadRight(12) + $"{deliveryModel.DeliveryTime}\n"
-                 + "Place:".PadRight(14) + $"{deliveryModel.PlaceModel.Name}\n"
-                 + "Distance:".PadRight(11) +  $"{deliveryModel.PlaceModel.Distance}\n"
-                 + "Traffic %:".PadRight(13) + $"{deliveryModel.PlaceModel.Traffic}\n"
-                 + "Vehicle:".PadRight(13) + $"{deliveryModel.TransportModel.TransportTypeModel.Name}\n"
-                 + "Product:".PadRight(12) + $"{deliveryModel.ProductModel.Name}\n";
+            return $"{"Arives at:", -12}{deliveryModel.DeliveryTime}\n"
+                 + $"{"Place:", -14}{deliveryModel.PlaceModel.Name}\n"
+                 + $"{"Distance:", -11}{deliveryModel.PlaceModel.Distance}\n"
+                 + $"{"Traffic %:", -13}{deliveryModel.PlaceModel.Traffic}\n"
+                 + $"{"Vehicle:", -13}{deliveryModel.TransportModel.TransportTypeModel.Name}\n"
+                 + $"{"Product:", -12}{deliveryModel.ProductModel.Name}\n";
         }
 
         private void CancelDelivery()
