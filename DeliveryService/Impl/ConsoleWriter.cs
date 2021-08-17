@@ -24,16 +24,13 @@ namespace DeliveryService.Impl
         public void ShowPlaces(IEnumerable<PlaceModel> placeModels)
         {
             Console.WriteLine("========== Available places ==========");
-            Console.WriteLine(string.Format(
-                "{0} | {1} | {2}", "Id".PadRight(5), "Name".PadRight(15), "Distance (km)".PadRight(5)
-            ));
+            Console.WriteLine($"{"Id",-5} | {"Name", -15} | {"Distance (km)",-5}");
             Console.WriteLine("--------------------------------------");
             foreach (PlaceModel placeModel in placeModels)
             {
-                string id = placeModel.Id.ToString().PadRight(5, ' ');
-                string name = placeModel.Name.ToString().PadRight(15, ' ');
-                string distance = placeModel.Distance.ToString().PadRight(5, ' ');
-                Console.WriteLine(id + " | " + name + " | " + distance);
+                Console.WriteLine(
+                    $"{placeModel.Id, -5} | {placeModel.Name, -15} | {placeModel.Distance, -5}"
+                );
             }
             Console.WriteLine("======================================");
         }
@@ -41,15 +38,11 @@ namespace DeliveryService.Impl
         public void ShowProducts(IEnumerable<ProductModel> productModels)
         {
             Console.WriteLine("=== Available products ===");
-            Console.WriteLine(string.Format(
-                "{0} | {1}", "Id".PadRight(5), "Name".PadRight(15)
-            ));
+            Console.WriteLine($"{"Id",-5} | {"Name",-15}");
             Console.WriteLine("--------------------------");
             foreach (ProductModel productModel in productModels)
             {
-                string id = productModel.Id.ToString().PadRight(5, ' ');
-                string name = productModel.Name.ToString().PadRight(15, ' ');
-                Console.WriteLine(id + " | " + name);
+                Console.WriteLine($"{productModel.Id, -5} | {productModel.Name, -15}");
             }
             Console.WriteLine("===========================");
         }
@@ -57,21 +50,21 @@ namespace DeliveryService.Impl
         public void ShowDelivery(DeliveryModel deliveryModel)
         {
             Console.WriteLine("============== Your delivery ==============");
-            Console.WriteLine("Id: ".PadRight(15, ' ') + deliveryModel.Id);
-            Console.WriteLine("Product: ".PadRight(15, ' ') + deliveryModel.ProductModel.Name);
-            Console.WriteLine("Delivering to: ".PadRight(15, ' ') + deliveryModel.PlaceModel.Name);
-            Console.WriteLine("Expected time: ".PadRight(15, ' ') + deliveryModel.DeliveryTime);
+            Console.WriteLine($"{"Id:", -15}{deliveryModel.Id}");
+            Console.WriteLine($"{"Product:", -15}{deliveryModel.ProductModel.Name}");
+            Console.WriteLine($"Delivering to: {deliveryModel.PlaceModel.Name}");
+            Console.WriteLine($"Expected time: {deliveryModel.DeliveryTime}");
             Console.WriteLine("===========================================");
         }
 
         public void Warn(string warning)
         {
-            Console.WriteLine("Warning: " + warning + "!");
+            Console.WriteLine($"Warning: {warning}!");
         }
 
         public void Info(string message)
         {
-            Console.WriteLine("Success: " + message + "!");
+            Console.WriteLine($"Success: {message}!");
         }
     }
 }
