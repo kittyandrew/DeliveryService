@@ -53,43 +53,7 @@ namespace DeliveryService.Impl
                         _consoleWriter.ShowPlaces(places);
                         break;
                     case '3':
-                        int productId;
-                        try
-                        {
-                            productId = _consoleReader.GetProductId();
-                        }
-                        catch (Exception e) when (e is FormatException || e is OverflowException)
-                        {
-                            _consoleWriter.Warn("Entered value is an unacceptable product ID");
-                            break;
-                        };
-
-                        IEnumerable<ProductModel> _product = products.Where(p => p.Id == productId);
-                        if (!_product.Any())
-                        {
-                            _consoleWriter.Warn("Could not find a product with such ID");
-                            break;
-                        }
-
-                        int placeId;
-                        try
-                        {
-                            placeId = _consoleReader.GetPlaceId();
-                        }
-                        catch (Exception e) when (e is FormatException || e is OverflowException)
-                        {
-                            _consoleWriter.Warn("Entered value is an unacceptable place ID");
-                            break;
-                        };
-                        
-                        IEnumerable<PlaceModel> _place = places.Where(p => p.Id == placeId);
-                        if (!_place.Any())
-                        {
-                            _consoleWriter.Warn("Could not find a place with such ID");
-                            break;
-                        }
-                        delivery = _deliveryService.MakeDelivery(_product.First(), _place.First());
-                        _consoleWriter.Info("You've ordered a delivery");
+                        delivery = OrderDelivery();
                         break;
                     case '4':
                         if (delivery != null) _consoleWriter.ShowDelivery(delivery);
@@ -99,7 +63,7 @@ namespace DeliveryService.Impl
                         if (delivery == null)
                         {
                             _consoleWriter.Warn("First you must order a delivery");
-                            break;;
+                            break;
                         }
                         _deliveryService.CancelDelivery(delivery);
                         delivery = null;
@@ -110,6 +74,48 @@ namespace DeliveryService.Impl
                         break;
                 }
             }
+        }
+
+        private DeliveryModel OrderDelivery()
+        {
+            int productId;
+            try
+            {
+                productId = _consoleReader.GetProductId();
+            }
+            catch (Exception e) when (e is FormatException || e is OverflowException)
+            {
+                _consoleWriter.Warn("Entered value is an unacceptable product ID");
+                return null;
+            };
+
+            IEnumerable<ProductModel> _product = products.Where(p => p.Id == productId);
+            if (!_product.Any())
+            {
+                _consoleWriter.Warn("Could not find a product with such ID");
+                return null;
+            }
+
+            int placeId;
+            try
+            {
+                placeId = _consoleReader.GetPlaceId();
+            }
+            catch (Exception e) when (e is FormatException || e is OverflowException)
+            {
+                _consoleWriter.Warn("Entered value is an unacceptable place ID");
+                return null;
+            };
+
+            IEnumerable<PlaceModel> _place = places.Where(p => p.Id == placeId);
+            if (!_place.Any())
+            {
+                _consoleWriter.Warn("Could not find a place with such ID");
+                return null;
+            }
+            DeliveryModel delivery = _deliveryService.MakeDelivery(_product.First(), _place.First());
+            _consoleWriter.Info("You've ordered a delivery");
+            return delivery;
         }
     }
 }
