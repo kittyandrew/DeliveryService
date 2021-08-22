@@ -4,17 +4,20 @@ namespace DeliveryService.Entity
 {
     public class Product : Base<int>
     {
-
+        private static int nextId = 1;
         public string Name { get; set; }
         public double Size { get; set; }
         public double Weight { get; set; }
 
-        public int? ProductTypeId { get; set; }
-        public virtual ProductType ProductType { get; set; }
+        public int ProductTypeId { get; set; }
 
-        public override string ToString()
+        public Product(string name, double size, double weight, int productTypeId)
         {
-            return $"Product(Id={Id}, Type={ProductType}, Name='{Name}', Size={Size}, Weight={Weight})";
+            Id = nextId++;
+            Name = name;
+            Size = size;
+            Weight = weight;
+            ProductTypeId = productTypeId;
         }
     }
 }

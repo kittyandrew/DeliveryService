@@ -1,9 +1,7 @@
 ﻿using System;
-using DeliveryService.Model;
 using DeliveryService.Entity;
-using DeliveryService.BLL.Abstr;
+using DeliveryService.BLL.Abstr.Services;
 using DeliveryService.DAL.Abstr.UOW;
-using DeliveryService.BLL.Impl.Mappers;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,15 +18,15 @@ namespace DeliveryService.BLL.Impl.Services
             TransportService = transportService;
         }
 
-        public ICollection<DeliveryModel> GetAllDeliveries()
+        public ICollection<Delivery> GetAllDeliveries()
         {
-            return UnitOfWork.Deliveries.GetAll().Select(d => d.EntityToModel()).ToList();
+            return UnitOfWork.Deliveries.GetAll();
         }
 
-        public DeliveryModel MakeDelivery(ProductModel product, PlaceModel place)
+        public Delivery MakeDelivery(Product product, Place place)
         {
-            Transport transport = TransportService.GetSuitableTransport(product.ProductTypeModel.ModelToEntity());
-            TimeSpan hours = TransportService.GetDeliveryTime(place.ModelToEntity(), transport);
+            Transport transport = TransportService.GetSuitableTransport(product);
+            TimeSpan hours = TransportService.GetDeliveryTime(place, transport);
             DateTime deliveryTime;
             // If transport is not ready yet -> schedule according to its time.
             if (transport.FreeBy > DateTime.Now) deliveryTime = transport.FreeBy + hours;
@@ -38,34 +36,24 @@ namespace DeliveryService.BLL.Impl.Services
             transport.FreeBy = deliveryTime;
             UnitOfWork.Transports.Update(transport);
 
-            Delivery delivery = new Delivery
-            {
-                DeliveryTime = deliveryTime,
-                Transport = transport,
-                TransportId = transport.Id,
-                Place = place.ModelToEntity(),
-                PlaceId = place.Id,
-                Product = product.ModelToEntity(),
-                ProductId = product.Id,
-            };
+            Delivery delivery = new Delivery(deliveryTime, place.Id, transport.Id, product.Id);
             UnitOfWork.Deliveries.Create(delivery);
             UnitOfWork.Save();
-            return delivery.EntityToModel();
+            return delivery;
         }
 
-        public void CancelDelivery(DeliveryModel deliveryModel)
+        public void CancelDelivery(Delivery delivery)
         {
-            Transport transport = deliveryModel.TransportModel.ModelToEntity();
+            Transport transport = UnitOfWork.Transports.Get(delivery.TransportId);
+            Place place = UnitOfWork.Places.Get(delivery.PlaceId);
             // If transport is not ready yet -> free by cancelled hours.
             if (transport.FreeBy > DateTime.Now)
             {
-                transport.FreeBy -= TransportService.GetDeliveryTime(
-                    deliveryModel.PlaceModel.ModelToEntity(), transport
-                );
+                transport.FreeBy -= TransportService.GetDeliveryTime(place, transport);
                 UnitOfWork.Transports.Update(transport);
             }
 
-            UnitOfWork.Deliveries.Delete(deliveryModel.ModelToEntity());
+            UnitOfWork.Deliveries.Delete(delivery.Id);
             UnitOfWork.Save();
         }
     }

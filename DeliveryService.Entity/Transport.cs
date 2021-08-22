@@ -4,14 +4,15 @@ namespace DeliveryService.Entity
 {
     public class Transport: Base<int>
     {
+        private static int nextId = 1;
         public DateTime FreeBy { get; set; }
+        public int TransportTypeId { get; set; }
 
-        public int? TransportTypeId { get; set; }
-        public virtual TransportType TransportType { get; set; }
-
-        public override string ToString()
+        public Transport(DateTime freeBy, int transportTypeId)
         {
-            return $"Transport(Id={Id}, Type={TransportType})";
+            Id = nextId++;
+            FreeBy = freeBy;
+            TransportTypeId = transportTypeId;
         }
     }
 }

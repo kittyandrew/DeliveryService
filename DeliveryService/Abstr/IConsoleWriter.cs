@@ -1,4 +1,4 @@
-﻿using DeliveryService.Model;
+﻿using DeliveryService.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +12,8 @@ namespace DeliveryService.Abstr
         void ShowInstructions();
         void Warn(string warning);
         void Info(string message);
-        void ShowProducts(IEnumerable<ProductModel> productModels);
-        void ShowPlaces(IEnumerable<PlaceModel> placeModels);
-        void ShowDelivery(DeliveryModel deliveryModel);
+        void ShowProducts(IEnumerable<Product> product);
+        void ShowPlaces(IEnumerable<Place> place);
+        void ShowDelivery(Delivery delivery);
     }
 }

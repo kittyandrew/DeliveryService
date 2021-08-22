@@ -4,14 +4,19 @@ namespace DeliveryService.Entity
 {
     public class TransportType : Base<int>
     {
+        private static int nextId = 1;
         public string Name { get; set; }
         public double MaxSize { get; set; }
         public double MaxWeight { get; set; }
         public double Speed { get; set; }
 
-        public override string ToString()
+        public TransportType(string name, double maxSize, double maxWeight, double speed)
         {
-            return $"TransportType(Id={Id}, Name={Name}, MaxSize={MaxSize}, MaxWeight={MaxWeight}, Speed={Speed})";
+            Id = nextId++;
+            Name = name;
+            MaxSize = maxSize;
+            MaxWeight = maxWeight;
+            Speed = speed;
         }
     }
 }

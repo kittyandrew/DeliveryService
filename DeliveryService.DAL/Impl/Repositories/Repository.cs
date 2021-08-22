@@ -1,21 +1,24 @@
 ﻿using System.Collections.Generic;
 using DeliveryService.DAL.Abstr.Repositories;
-using DeliveryService.DAL.Impl.EF;
 using DeliveryService.Entity;
-using System.Data.Entity;
 using System.Linq;
+using System;
 
 namespace DeliveryService.DAL.Impl.Repositories
 {
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : Base<TKey>
     {
-        private readonly DeliveryServiceContext Context;
-        protected readonly DbSet<TEntity> DbSet;
+        protected readonly ICollection<TEntity> DbSet;
 
-        public Repository(DeliveryServiceContext context)
+        public Repository()
         {
-            Context = context;
-            DbSet = context.Set<TEntity>();
+            DbSet = new List<TEntity>();
+            Initialize(DbSet);
+        }
+
+        protected virtual void Initialize(ICollection<TEntity> DbSet)
+        {
+            throw new NotImplementedException();
         }
 
         public virtual void Create(TEntity entity)
@@ -25,24 +28,24 @@ namespace DeliveryService.DAL.Impl.Repositories
 
         public virtual TEntity Get(TKey id)
         {
-            return DbSet.Find(id);
+            return DbSet.Where(entity => entity.Id.Equals(id)).First();
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public virtual ICollection<TEntity> GetAll()
         {
-            return DbSet.ToList();
+            return DbSet;
         }
 
+        // Hack to work with ICollection.
         public virtual void Update(TEntity entity)
         {
-            TEntity find = Get(entity.Id);
-            Context.Entry(find).CurrentValues.SetValues(entity);
+            Delete(entity.Id);
+            Create(entity);
         }
 
-        public virtual void Delete(TEntity entity)
+        public virtual void Delete(TKey id)
         {
-            TEntity find = Get(entity.Id);
-            DbSet.Remove(find);
+            DbSet.Remove(Get(id));
         }
     }
 

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using DeliveryService.DAL.Impl.Repositories;
-using DeliveryService.DAL.Impl.EF;
 using DeliveryService.Entity;
 using System.Linq;
 using System;
@@ -9,14 +8,25 @@ namespace DeliveryService.DAL.Abstr.Repositories
 {
     public class TransportRepository : Repository<Transport, int>, ITransportRepository
     {
-        public TransportRepository(DeliveryServiceContext context) : base(context)
+        public TransportRepository() : base()
         {
 
         }
 
-        public Transport GetFirstFree(TransportType transportType)
+        protected override void Initialize(ICollection<Transport> DbSet)
         {
-            return DbSet.Where(t => t.TransportType.Id == transportType.Id).OrderBy(t => t.FreeBy).First();
+            DbSet.Add(new Transport(DateTime.Now, 1));
+            DbSet.Add(new Transport(DateTime.Now, 1));
+            DbSet.Add(new Transport(DateTime.Now, 1));
+            DbSet.Add(new Transport(DateTime.Now, 2));
+            DbSet.Add(new Transport(DateTime.Now, 2));
+            DbSet.Add(new Transport(DateTime.Now, 3));
+            DbSet.Add(new Transport(DateTime.Now, 3));
+        }
+
+        public Transport GetFirstFree(int transportTypeId)
+        {
+            return DbSet.Where(t => t.TransportTypeId == transportTypeId).OrderBy(t => t.FreeBy).First();
         }
     }
 }

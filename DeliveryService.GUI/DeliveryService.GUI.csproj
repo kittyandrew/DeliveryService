@@ -138,10 +138,6 @@
       <Project>{2b66f804-1c24-4df4-9a90-7a76b6183b2a}</Project>
       <Name>DeliveryService.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DeliveryService.Model\DeliveryService.Model.csproj">
-      <Project>{54c8ec62-0496-4dfb-9493-ce5c65ef7834}</Project>
-      <Name>DeliveryService.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

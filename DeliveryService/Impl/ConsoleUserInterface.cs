@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using DeliveryService.Abstr;
-using DeliveryService.BLL.Abstr;
-using DeliveryService.Model;
+using DeliveryService.BLL.Abstr.Services;
 using DeliveryService.DAL.Abstr;
-using DeliveryService.BLL;
+using DeliveryService.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +18,8 @@ namespace DeliveryService.Impl
         private readonly IDeliveryService _deliveryService;
         private readonly IConsoleWriter _consoleWriter;
         private readonly IConsoleReader _consoleReader;
-        private ICollection<ProductModel> products;
-        private ICollection<PlaceModel> places;
+        private ICollection<Product> products;
+        private ICollection<Place> places;
 
         public ConsoleUserInterface(IProductService productService, IPlaceService placeService,
             IDeliveryService deliveryService,
@@ -39,7 +38,7 @@ namespace DeliveryService.Impl
         {
             bool running = true;
             char task;
-            DeliveryModel delivery = null;
+            Delivery delivery = null;
             while (running)
             {
                 _consoleWriter.ShowInstructions();
@@ -76,7 +75,7 @@ namespace DeliveryService.Impl
             }
         }
 
-        private DeliveryModel OrderDelivery()
+        private Delivery OrderDelivery()
         {
             int productId;
             try
@@ -89,7 +88,7 @@ namespace DeliveryService.Impl
                 return null;
             };
 
-            IEnumerable<ProductModel> _product = products.Where(p => p.Id == productId);
+            IEnumerable<Product> _product = products.Where(p => p.Id == productId);
             if (!_product.Any())
             {
                 _consoleWriter.Warn("Could not find a product with such ID");
@@ -107,13 +106,13 @@ namespace DeliveryService.Impl
                 return null;
             };
 
-            IEnumerable<PlaceModel> _place = places.Where(p => p.Id == placeId);
+            IEnumerable<Place> _place = places.Where(p => p.Id == placeId);
             if (!_place.Any())
             {
                 _consoleWriter.Warn("Could not find a place with such ID");
                 return null;
             }
-            DeliveryModel delivery = _deliveryService.MakeDelivery(_product.First(), _place.First());
+            Delivery delivery = _deliveryService.MakeDelivery(_product.First(), _place.First());
             _consoleWriter.Info("You've ordered a delivery");
             return delivery;
         }

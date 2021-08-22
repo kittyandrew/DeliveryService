@@ -4,13 +4,17 @@ namespace DeliveryService.Entity
 {
     public class Place : Base<int>
     {
+        private static int nextId = 1;
         public string Name { get; set; }
         public double Distance { get; set; }
         public double Traffic { get; set; }
 
-        public override string ToString()
+        public Place(string name, double distance, double traffic)
         {
-            return $"Place(Id={Id}, Name={Name}, Distance={Distance}, Traffic={Traffic})";
+            Id = nextId++;
+            Name = name;
+            Distance = distance;
+            Traffic = traffic;
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DeliveryService.BLL.Impl.Mappers;
 using DeliveryService.DAL.Abstr.UOW;
-using DeliveryService.BLL.Abstr;
-using DeliveryService.Model;
+using DeliveryService.Entity;
+using DeliveryService.BLL.Abstr.Services;
 
 namespace DeliveryService.BLL.Impl.Services
 {
@@ -17,9 +16,9 @@ namespace DeliveryService.BLL.Impl.Services
             UnitOfWork = unitOfWork;
         }
 
-        public ICollection<ProductModel> GetAllProducts()
+        public ICollection<Product> GetAllProducts()
         {
-            return UnitOfWork.Products.GetAll().Select(p => p.EntityToModel()).ToList();
+            return UnitOfWork.Products.GetAll();
         }
     }
 }
