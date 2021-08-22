@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using DeliveryService.Abstr;
+﻿using DeliveryService.Abstr;
 using DeliveryService.BLL.Abstr.Services;
 using DeliveryService.DAL.Abstr;
+using DeliveryService.BLL.Impl;
 using DeliveryService.Entity;
 using System;
 using System.Collections.Generic;
@@ -13,25 +13,23 @@ namespace DeliveryService.Impl
 {
     public class ConsoleUserInterface : IConsoleUserInterface
     {
-        private readonly IProductService _productService;
-        private readonly IPlaceService _placeService;
-        private readonly IDeliveryService _deliveryService;
         private readonly IConsoleWriter _consoleWriter;
         private readonly IConsoleReader _consoleReader;
+        private readonly ServiceCollection _services;
         private ICollection<Product> products;
         private ICollection<Place> places;
 
-        public ConsoleUserInterface(IProductService productService, IPlaceService placeService,
-            IDeliveryService deliveryService,
-            IConsoleWriter consoleWriter, IConsoleReader consoleReader)
+        public ConsoleUserInterface(
+            ServiceCollection services,
+            IConsoleWriter consoleWriter,
+            IConsoleReader consoleReader
+        )
         {
-            _productService = productService;
-            _placeService = placeService;
-            _deliveryService = deliveryService;
+            _services = services;
             _consoleWriter = consoleWriter;
             _consoleReader = consoleReader;
-            products = _productService.GetAllProducts().ToList();
-            places = _placeService.GetAllPlaces().ToList();
+            products = services.productService.GetAllProducts().ToList();
+            places = services.placeService.GetAllPlaces().ToList();
         }
 
         public void Show()
@@ -64,7 +62,7 @@ namespace DeliveryService.Impl
                             _consoleWriter.Warn("First you must order a delivery");
                             break;
                         }
-                        _deliveryService.CancelDelivery(delivery);
+                        _services.deliveryService.CancelDelivery(delivery);
                         delivery = null;
                         _consoleWriter.Info("Your delivery was cancelled");
                         break;
@@ -112,7 +110,7 @@ namespace DeliveryService.Impl
                 _consoleWriter.Warn("Could not find a place with such ID");
                 return null;
             }
-            Delivery delivery = _deliveryService.MakeDelivery(_product.First(), _place.First());
+            Delivery delivery = _services.deliveryService.MakeDelivery(_product.First(), _place.First());
             _consoleWriter.Info("You've ordered a delivery");
             return delivery;
         }

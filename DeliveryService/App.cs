@@ -19,10 +19,9 @@ namespace DeliveryService
             services = new ServiceCollection();
             consoleReader = new ConsoleReader();
             consoleWriter = new ConsoleWriter();
+
             consoleUserInterface = new ConsoleUserInterface(
-                services.productService, services.placeService,
-                services.deliveryService,
-                consoleWriter, consoleReader
+                services, consoleWriter, consoleReader
             );
         }
 
