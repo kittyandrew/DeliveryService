@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstr\IPlaceService.cs" />
+    <Compile Include="Impl\Mappers\TransportTypeMapper.cs" />
     <Compile Include="Impl\Services\PlaceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Abstr\ITransportService.cs" />
@@ -68,9 +69,7 @@
     <Compile Include="Impl\Mappers\DeliveryMapper.cs" />
     <Compile Include="Impl\Mappers\PlaceMapper.cs" />
     <Compile Include="Impl\Mappers\TransportMapper.cs" />
-    <Compile Include="Impl\Mappers\TransportTypeMapper.cs" />
     <Compile Include="Impl\Mappers\ProductMapper.cs" />
-    <Compile Include="Impl\Mappers\ProductTypeMapper.cs" />
     <Compile Include="BLLDependencies.cs" />
     <Compile Include="Impl\Services\ProductService.cs" />
   </ItemGroup>

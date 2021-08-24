@@ -5,7 +5,7 @@ namespace DeliveryService.BLL.Abstr
 {
     public interface ITransportService
     {
-        Transport GetSuitableTransport(ProductType productType);
+        Transport GetSuitableTransport(Product product);
         TimeSpan GetDeliveryTime(Place place, Transport transport);
     }
 }

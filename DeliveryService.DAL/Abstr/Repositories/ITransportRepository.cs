@@ -6,6 +6,6 @@ namespace DeliveryService.DAL.Abstr.Repositories
 {
     public interface ITransportRepository : IRepository<Transport, int>
     {
-        Transport GetFirstFree(TransportType transportType);
+        Transport GetFirstFree(Product product);
     }
 }

@@ -13,9 +13,7 @@ namespace DeliveryService.BLL.Impl.Mappers
                 Id = productModel.Id,
                 Name = productModel.Name,
                 Size = productModel.Size,
-                Weight = productModel.Weight,
-                ProductTypeId = productModel.ProductTypeModel.Id,
-                ProductType = ProductTypeMapper.ModelToEntity(productModel.ProductTypeModel)
+                Weight = productModel.Weight
             };
         }
 
@@ -26,8 +24,7 @@ namespace DeliveryService.BLL.Impl.Mappers
                 Id = product.Id,
                 Name = product.Name,
                 Size = product.Size,
-                Weight = product.Weight,
-                ProductTypeModel = ProductTypeMapper.EntityToModel(product.ProductType)
+                Weight = product.Weight
             };
         }
     }

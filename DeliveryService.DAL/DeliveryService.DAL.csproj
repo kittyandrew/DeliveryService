@@ -63,9 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Impl\EF\DbInitializer.cs" />
-    <Compile Include="Migrations\202106250523545_InitialCreate.cs" />
-    <Compile Include="Migrations\202106250523545_InitialCreate.designer.cs">
-      <DependentUpon>202106250523545_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202108242318030_Initial.cs" />
+    <Compile Include="Migrations\202108242318030_Initial.designer.cs">
+      <DependentUpon>202108242318030_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,8 +82,6 @@
     <Compile Include="Impl\UOW\UnitOfWork.cs" />
     <Compile Include="Abstr\Repositories\IDeliveryRepository.cs" />
     <Compile Include="Impl\Repositories\DeliveryRepository.cs" />
-    <Compile Include="Abstr\Repositories\IProductTypeRepository.cs" />
-    <Compile Include="Impl\Repositories\ProductTypeRepository.cs" />
     <Compile Include="Abstr\Repositories\ITransportTypeRepository.cs" />
     <Compile Include="Impl\Repositories\TransportTypeRepository.cs" />
     <Compile Include="DALDependencies.cs" />
@@ -128,8 +126,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106250523545_InitialCreate.resx">
-      <DependentUpon>202106250523545_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202108242318030_Initial.resx">
+      <DependentUpon>202108242318030_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -14,9 +14,12 @@ namespace DeliveryService.DAL.Abstr.Repositories
 
         }
 
-        public Transport GetFirstFree(TransportType transportType)
+        public Transport GetFirstFree(Product product)
         {
-            return DbSet.Where(t => t.TransportType.Id == transportType.Id).OrderBy(t => t.FreeBy).First();
+            return DbSet.Where(
+                t => t.TransportType.MaxSize >= product.Size
+                  || t.TransportType.MaxWeight >= product.Weight
+            ).OrderBy(t => t.FreeBy).First();
         }
     }
 }

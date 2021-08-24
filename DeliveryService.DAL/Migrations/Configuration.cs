@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "DeliveryService.DAL.Impl.EF.DeliveryServiceContext";
         }
 
         protected override void Seed(DeliveryService.DAL.Impl.EF.DeliveryServiceContext context)

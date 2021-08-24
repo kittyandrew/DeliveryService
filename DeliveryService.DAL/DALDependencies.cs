@@ -17,7 +17,6 @@ namespace DeliveryService.DAL
             services.AddScoped<ITransportRepository, TransportRepository>();
             services.AddScoped<ITransportTypeRepository, TransportTypeRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IPlaceRepository, PlaceRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

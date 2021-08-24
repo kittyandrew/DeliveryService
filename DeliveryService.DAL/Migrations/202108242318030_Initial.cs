@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -44,18 +44,15 @@
                         Name = c.String(),
                         Size = c.Double(nullable: false),
                         Weight = c.Double(nullable: false),
-                        ProductTypeId = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ProductTypes", t => t.ProductTypeId)
-                .Index(t => t.ProductTypeId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.ProductTypes",
+                "dbo.Transports",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        FreeBy = c.DateTime(nullable: false),
                         TransportTypeId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -74,18 +71,6 @@
                     })
                 .PrimaryKey(t => t.Id);
             
-            CreateTable(
-                "dbo.Transports",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        FreeBy = c.DateTime(nullable: false),
-                        TransportTypeId = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.TransportTypes", t => t.TransportTypeId)
-                .Index(t => t.TransportTypeId);
-            
         }
         
         public override void Down()
@@ -93,18 +78,13 @@
             DropForeignKey("dbo.Deliveries", "TransportId", "dbo.Transports");
             DropForeignKey("dbo.Transports", "TransportTypeId", "dbo.TransportTypes");
             DropForeignKey("dbo.Deliveries", "ProductId", "dbo.Products");
-            DropForeignKey("dbo.Products", "ProductTypeId", "dbo.ProductTypes");
-            DropForeignKey("dbo.ProductTypes", "TransportTypeId", "dbo.TransportTypes");
             DropForeignKey("dbo.Deliveries", "PlaceId", "dbo.Places");
             DropIndex("dbo.Transports", new[] { "TransportTypeId" });
-            DropIndex("dbo.ProductTypes", new[] { "TransportTypeId" });
-            DropIndex("dbo.Products", new[] { "ProductTypeId" });
             DropIndex("dbo.Deliveries", new[] { "ProductId" });
             DropIndex("dbo.Deliveries", new[] { "TransportId" });
             DropIndex("dbo.Deliveries", new[] { "PlaceId" });
-            DropTable("dbo.Transports");
             DropTable("dbo.TransportTypes");
-            DropTable("dbo.ProductTypes");
+            DropTable("dbo.Transports");
             DropTable("dbo.Products");
             DropTable("dbo.Places");
             DropTable("dbo.Deliveries");

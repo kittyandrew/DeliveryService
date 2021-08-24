@@ -14,13 +14,11 @@ namespace DeliveryService.DAL.Impl.UOW
         public ITransportRepository     Transports { get; }
         public ITransportTypeRepository TransportTypes { get; }
         public IProductRepository       Products { get; }
-        public IProductTypeRepository   ProductTypes { get; }
 
         public UnitOfWork(
             DeliveryServiceContext context, IPlaceRepository places,
             ITransportRepository transports, IProductRepository products,
-            ITransportTypeRepository transportTypes, IProductTypeRepository productTypes,
-            IDeliveryRepository deliveries
+            ITransportTypeRepository transportTypes, IDeliveryRepository deliveries
         )
         {
             Deliveries = deliveries;
@@ -29,7 +27,6 @@ namespace DeliveryService.DAL.Impl.UOW
             Transports = transports;
             TransportTypes = transportTypes;
             Products = products;
-            ProductTypes = productTypes;
         }
 
         public void Save()

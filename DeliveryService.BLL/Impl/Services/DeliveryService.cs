@@ -27,7 +27,7 @@ namespace DeliveryService.BLL.Impl.Services
 
         public DeliveryModel MakeDelivery(ProductModel product, PlaceModel place)
         {
-            Transport transport = TransportService.GetSuitableTransport(product.ProductTypeModel.ModelToEntity());
+            Transport transport = TransportService.GetSuitableTransport(product.ModelToEntity());
             TimeSpan hours = TransportService.GetDeliveryTime(place.ModelToEntity(), transport);
             DateTime deliveryTime;
             // If transport is not ready yet -> schedule according to its time.
