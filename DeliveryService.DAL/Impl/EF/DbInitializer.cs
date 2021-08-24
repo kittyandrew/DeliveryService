@@ -6,8 +6,8 @@ using DeliveryService.Entity;
 
 namespace DeliveryService.DAL.Impl.EF
 {
-    //class DbInitializer : DropCreateDatabaseIfModelChanges<DeliveryServiceContext>
-    class DbInitializer : DropCreateDatabaseAlways<DeliveryServiceContext>
+    class DbInitializer : DropCreateDatabaseIfModelChanges<DeliveryServiceContext>
+    // class DbInitializer : DropCreateDatabaseAlways<DeliveryServiceContext>
     {
         protected override void Seed(DeliveryServiceContext context)
         {
