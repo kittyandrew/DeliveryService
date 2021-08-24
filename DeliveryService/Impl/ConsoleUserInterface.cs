@@ -16,8 +16,8 @@ namespace DeliveryService.Impl
         private readonly IConsoleWriter _consoleWriter;
         private readonly IConsoleReader _consoleReader;
         private readonly ServiceCollection _services;
-        private ICollection<Product> products;
-        private ICollection<Place> places;
+        private readonly ICollection<Product> products;
+        private readonly ICollection<Place> places;
 
         public ConsoleUserInterface(
             ServiceCollection services,
