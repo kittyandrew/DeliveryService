@@ -34,6 +34,9 @@ namespace DeliveryService.BLL.Impl
                 productTypeRepository, deliveryRepository
             );
 
+            // Initializing test data.
+            unitOfWork.InitializeData();
+
             transportService = new TransportService(unitOfWork);
             placeService = new PlaceService(unitOfWork);
             productService = new ProductService(unitOfWork);

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace DeliveryService.Entity
 {
@@ -6,13 +7,13 @@ namespace DeliveryService.Entity
     {
         private static int nextId = 1;
         public string Name { get; set; }
-        public int TransportTypeId { get; set; }
+        public ICollection<TransportType> TransportTypes { get; set; }
         
-        public ProductType(string name, int transportTypeId)
+        public ProductType(string name)
         {
             Id = nextId++;
             Name = name;
-            TransportTypeId = transportTypeId;
+            TransportTypes = new List<TransportType>();
         }
     }
 }

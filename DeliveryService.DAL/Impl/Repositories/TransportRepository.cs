@@ -13,20 +13,18 @@ namespace DeliveryService.DAL.Abstr.Repositories
 
         }
 
-        protected override void Initialize(ICollection<Transport> DbSet)
+        public Transport GetFirstFreeAndSuitable(Product product)
         {
-            DbSet.Add(new Transport(DateTime.Now, 1));
-            DbSet.Add(new Transport(DateTime.Now, 1));
-            DbSet.Add(new Transport(DateTime.Now, 1));
-            DbSet.Add(new Transport(DateTime.Now, 2));
-            DbSet.Add(new Transport(DateTime.Now, 2));
-            DbSet.Add(new Transport(DateTime.Now, 3));
-            DbSet.Add(new Transport(DateTime.Now, 3));
-        }
-
-        public Transport GetFirstFree(int transportTypeId)
-        {
-            return DbSet.Where(t => t.TransportTypeId == transportTypeId).OrderBy(t => t.FreeBy).First();
+            IList<int> Ids = product.ProductType.TransportTypes.Select(tt => tt.Id).ToList();
+            return DbSet.Where(
+                t => Ids.Contains(t.TransportType.Id)
+                  && t.TransportType.MaxSize >= product.Size
+                  && t.TransportType.MaxWeight >= product.Weight
+            )
+                .OrderBy(t => t.FreeBy)
+                .ThenBy(t => t.TransportType.MaxSize)
+                .ThenBy(t => t.TransportType.MaxWeight)
+                .First();
         }
     }
 }

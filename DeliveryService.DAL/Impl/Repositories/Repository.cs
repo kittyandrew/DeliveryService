@@ -13,12 +13,6 @@ namespace DeliveryService.DAL.Impl.Repositories
         public Repository()
         {
             DbSet = new List<TEntity>();
-            Initialize(DbSet);
-        }
-
-        protected virtual void Initialize(ICollection<TEntity> DbSet)
-        {
-            throw new NotImplementedException();
         }
 
         public virtual void Create(TEntity entity)

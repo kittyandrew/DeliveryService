@@ -10,10 +10,5 @@ namespace DeliveryService.DAL.Impl.Repositories
         {
 
         }
-
-        protected override void Initialize(ICollection<Delivery> DbSet)
-        {
-            
-        }
     }
 }

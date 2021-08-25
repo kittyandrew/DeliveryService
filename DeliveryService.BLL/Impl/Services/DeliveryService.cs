@@ -25,7 +25,7 @@ namespace DeliveryService.BLL.Impl.Services
 
         public Delivery MakeDelivery(Product product, Place place)
         {
-            Transport transport = TransportService.GetSuitableTransport(product);
+            Transport transport = UnitOfWork.Transports.GetFirstFreeAndSuitable(product);
             TimeSpan hours = TransportService.GetDeliveryTime(place, transport);
             DateTime deliveryTime;
             // If transport is not ready yet -> schedule according to its time.
@@ -36,7 +36,8 @@ namespace DeliveryService.BLL.Impl.Services
             transport.FreeBy = deliveryTime;
             UnitOfWork.Transports.Update(transport);
 
-            Delivery delivery = new Delivery(deliveryTime, place.Id, transport.Id, product.Id);
+            Delivery delivery = new Delivery(deliveryTime, place, transport, product);
+            
             UnitOfWork.Deliveries.Create(delivery);
             UnitOfWork.Save();
             return delivery;
@@ -44,13 +45,11 @@ namespace DeliveryService.BLL.Impl.Services
 
         public void CancelDelivery(Delivery delivery)
         {
-            Transport transport = UnitOfWork.Transports.Get(delivery.TransportId);
-            Place place = UnitOfWork.Places.Get(delivery.PlaceId);
             // If transport is not ready yet -> free by cancelled hours.
-            if (transport.FreeBy > DateTime.Now)
+            if (delivery.Transport.FreeBy > DateTime.Now)
             {
-                transport.FreeBy -= TransportService.GetDeliveryTime(place, transport);
-                UnitOfWork.Transports.Update(transport);
+                delivery.Transport.FreeBy -= TransportService.GetDeliveryTime(delivery.Place, delivery.Transport);
+                UnitOfWork.Transports.Update(delivery.Transport);
             }
 
             UnitOfWork.Deliveries.Delete(delivery.Id);

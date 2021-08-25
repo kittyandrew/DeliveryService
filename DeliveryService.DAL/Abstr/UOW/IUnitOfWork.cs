@@ -17,5 +17,7 @@ namespace DeliveryService.DAL.Abstr.UOW
         IProductTypeRepository ProductTypes { get; }
 
         void Save();
+
+        void InitializeData();
     }
 }

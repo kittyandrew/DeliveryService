@@ -52,8 +52,8 @@ namespace DeliveryService.Impl
         {
             Console.WriteLine("============== Your delivery ==============");
             Console.WriteLine($"{"Id:",-15}{delivery.Id}");
-            Console.WriteLine($"{"Product Id:",-15}{delivery.ProductId}");
-            Console.WriteLine($"{"Place Id:", -15}{delivery.PlaceId}");
+            Console.WriteLine($"{"Product:",-15}{delivery.Product.Name}");
+            Console.WriteLine($"{"Place:", -15}{delivery.Place.Name}");
             Console.WriteLine($"Expected time: {delivery.DeliveryTime}");
             Console.WriteLine("===========================================");
         }

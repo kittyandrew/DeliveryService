@@ -1,0 +1,41 @@
+﻿<Window x:Class="DeliveryService.GUI.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:DeliveryService.GUI.ViewModel"
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800" Name="mainWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            HorizontalAlignment="center"
+            Width="700"
+            TextWrapping="Wrap"
+            Margin="20 15 15 0"
+            FontSize="18" FontWeight="Bold"
+            Text="Hello! This application allows you to choose products that we have in our warehouses and order it to the distribution centre that is the closest to you."
+         />
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ContentControl Content="{Binding SelectedViewModel}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 50 0 0">
+            <ContentControl Content="{Binding DisplayDeliveriesViewModel}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="10" Width="200" Content="Create Delivery" Command="{Binding UpdateViewCommand}" CommandParameter="CreateDelivery"/>
+            <Button Margin="10" Width="200" Content="Cancel Delivery" Command="{Binding UpdateViewCommand}" CommandParameter="CancelDelivery"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -7,19 +7,19 @@ namespace DeliveryService.Entity
         private static int nextId = 1;
         public DateTime DeliveryTime { get; set; }
 
-        public int PlaceId { get; set; }
+        public Place Place { get; set; }
 
-        public int TransportId { get; set; }
+        public Transport Transport { get; set; }
 
-        public int ProductId { get; set; }
+        public Product Product { get; set; }
 
-        public Delivery(DateTime deliveryTime, int placeId, int transportId, int productId)
+        public Delivery(DateTime deliveryTime, Place place, Transport transport, Product product)
         {
             Id = nextId++;
             DeliveryTime = deliveryTime;
-            PlaceId = placeId;
-            TransportId = transportId;
-            ProductId = productId;
+            Place = place;
+            Transport = transport;
+            Product = product;
         }
     }
 }

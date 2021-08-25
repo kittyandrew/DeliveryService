@@ -6,13 +6,13 @@ namespace DeliveryService.Entity
     {
         private static int nextId = 1;
         public DateTime FreeBy { get; set; }
-        public int TransportTypeId { get; set; }
+        public TransportType TransportType { get; set; }
 
-        public Transport(DateTime freeBy, int transportTypeId)
+        public Transport(DateTime freeBy, TransportType transportType)
         {
             Id = nextId++;
             FreeBy = freeBy;
-            TransportTypeId = transportTypeId;
+            TransportType = transportType;
         }
     }
 }
