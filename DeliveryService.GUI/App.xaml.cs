@@ -29,9 +29,8 @@ namespace DeliveryService.GUI
                 serviceProvider.GetService<IDeliveryService>(), serviceProvider.GetService<IProductService>(),
                 serviceProvider.GetService<ITransportService>(), serviceProvider.GetService<IPlaceService>()
             );
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.DataContext = mainViewModel;
-            MainWindow.Show();
+            MainWindow mainWindow = new MainWindow { DataContext = mainViewModel };
+            mainWindow.Show();
         }
     }
 }
