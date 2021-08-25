@@ -12,13 +12,7 @@
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
         <TextBlock
             FontSize="15" FontWeight="Bold"
-            Text="Chosen delivery:"
-        />
-        <TextBox
-            Height="30" Width="100"
-            FontSize="15"
-            IsReadOnly="true"
-            Text="{Binding Path=SelectedDelivery.Id}"
+            Text="Choose your delivery from the list below and click the button to remove."
         />
         <Button
                 Margin="25"

@@ -15,11 +15,14 @@ using System.Windows.Input;
 using DeliveryService.BLL.Impl;
 using DeliveryService.GUI.Commands;
 using Prism.Events;
+using DeliveryService.GUI.Events;
 
 namespace DeliveryService.GUI.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        private BaseViewModel _createDeliveryViewModel;
+        private BaseViewModel _cancelDeliveryViewModel;
         private BaseViewModel selectedViewModel;
         private DisplayDeliveriesViewModel displayDeliveriesViewModel;
 
@@ -51,6 +54,13 @@ namespace DeliveryService.GUI.ViewModel
 
             UpdateViewCommand = new RelayCommand(obj => ChangeViewModel(obj));
             displayDeliveriesViewModel = new DisplayDeliveriesViewModel(eventAggregator, DeliveryService);
+            _createDeliveryViewModel = new CreateDeliveryViewModel(
+                EventAggregator, displayDeliveriesViewModel,
+                DeliveryService, ProductService, PlaceService
+            );
+            _cancelDeliveryViewModel = new CancelDeliveryViewModel(
+                EventAggregator, displayDeliveriesViewModel, DeliveryService
+            );
         }
 
         private void ChangeViewModel(object parameter)
@@ -58,16 +68,11 @@ namespace DeliveryService.GUI.ViewModel
             switch (parameter.ToString())
             {
                 case "CreateDelivery":
-                    SelectedViewModel = new CreateDeliveryViewModel(
-                        EventAggregator, displayDeliveriesViewModel,
-                        DeliveryService, ProductService, PlaceService
-                    );
+                    SelectedViewModel = _createDeliveryViewModel;
                     break;
 
                 case "CancelDelivery":
-                    SelectedViewModel = new CancelDeliveryViewModel(
-                        EventAggregator, displayDeliveriesViewModel, DeliveryService
-                    );
+                    SelectedViewModel = _cancelDeliveryViewModel;
                     break;
 
                 case null:

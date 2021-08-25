@@ -26,11 +26,11 @@
          />
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <ContentControl Content="{Binding SelectedViewModel}"/>
+            <ContentPresenter Content="{Binding SelectedViewModel}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 50 0 0">
-            <ContentControl Content="{Binding DisplayDeliveriesViewModel}"/>
+            <ContentPresenter Content="{Binding DisplayDeliveriesViewModel}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
