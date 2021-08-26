@@ -1,18 +1,21 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DeliveryService.Entity
 {
     public class Transport: Base<int>
     {
-        private static int nextId = 1;
+        [Column(TypeName = "datetime2")]
         public DateTime FreeBy { get; set; }
-        public TransportType TransportType { get; set; }
 
-        public Transport(DateTime freeBy, TransportType transportType)
+        [ForeignKey("TransportTypeId")]
+        public virtual TransportType TransportType { get; set; }
+        public int TransportTypeId { get; set; }
+
+        public Transport(DateTime freeBy, int transportTypeId)
         {
-            Id = nextId++;
             FreeBy = freeBy;
-            TransportType = transportType;
+            TransportTypeId = transportTypeId;
         }
     }
 }

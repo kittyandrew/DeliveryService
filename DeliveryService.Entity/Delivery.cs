@@ -1,25 +1,23 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DeliveryService.Entity
 {
     public class Delivery : Base<int>
     {
-        private static int nextId = 1;
+        [Column(TypeName = "datetime2")]
         public DateTime DeliveryTime { get; set; }
 
-        public Place Place { get; set; }
+        [ForeignKey("PlaceId")]
+        public virtual Place Place { get; set; }
+        public int PlaceId { get; set; }
 
-        public Transport Transport { get; set; }
+        [ForeignKey("TransportId")]
+        public virtual Transport Transport { get; set; }
+        public int TransportId { get; set; }
 
-        public Product Product { get; set; }
-
-        public Delivery(DateTime deliveryTime, Place place, Transport transport, Product product)
-        {
-            Id = nextId++;
-            DeliveryTime = deliveryTime;
-            Place = place;
-            Transport = transport;
-            Product = product;
-        }
+        [ForeignKey("ProductId")]
+        public virtual Product Product { get; set; }
+        public int ProductId { get; set; }
     }
 }
