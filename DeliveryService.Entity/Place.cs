@@ -12,7 +12,6 @@ namespace DeliveryService.Entity
         {
 
         }
-
         public Place(string name, double distance, double traffic)
         {
             Name = name;

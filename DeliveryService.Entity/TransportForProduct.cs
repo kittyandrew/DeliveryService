@@ -9,11 +9,11 @@ namespace DeliveryService.Entity
 {
     public class TransportForProduct : Base<int>
     {
-        [ForeignKey("TransportTypeId")]
+        // [ForeignKey("TransportTypeId")]
         public virtual TransportType TransportType { get; set; }
         public int TransportTypeId { get; set; }
 
-        [ForeignKey("ProductTypeId")]
+        // [ForeignKey("ProductTypeId")]
         public virtual ProductType ProductType { get; set; }
         public int ProductTypeId { get; set; }
 

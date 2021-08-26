@@ -25,10 +25,13 @@ namespace DeliveryService.BLL.Impl.Services
 
         public Delivery MakeDelivery(Product product, Place place)
         {
+            // Getting the most suitable vehicle from the database.
             Transport transport = UnitOfWork.Transports.GetFirstFreeAndSuitable(product);
+            // Evaluating time it will take for the vehicle to get to the target place.
             TimeSpan hours = TransportService.GetDeliveryTime(place, transport);
+
             DateTime deliveryTime;
-            // If transport is not ready yet -> schedule according to its time.
+            // If transport is not available at the moment, schedule for later according to its time.
             if (transport.FreeBy > DateTime.Now) deliveryTime = transport.FreeBy + hours;
             // Otherwise, schedule right now.
             else                                 deliveryTime = DateTime.Now + hours;
@@ -36,7 +39,8 @@ namespace DeliveryService.BLL.Impl.Services
             transport.FreeBy = deliveryTime;
             UnitOfWork.Transports.Update(transport);
 
-            Delivery delivery = new Delivery() {
+            Delivery delivery = new Delivery()
+            {
                 DeliveryTime = deliveryTime,
                 Place = place,
                 PlaceId = place.Id,
@@ -45,7 +49,7 @@ namespace DeliveryService.BLL.Impl.Services
                 Product = product,
                 ProductId = product.Id,
             };
-            
+
             UnitOfWork.Deliveries.Create(delivery);
             UnitOfWork.Save();
             return delivery;
@@ -53,7 +57,7 @@ namespace DeliveryService.BLL.Impl.Services
 
         public void CancelDelivery(Delivery delivery)
         {
-            // If transport is not ready yet -> free by cancelled hours.
+            // If transport is not available yet -> free by cancelled hours.
             if (delivery.Transport.FreeBy > DateTime.Now)
             {
                 delivery.Transport.FreeBy -= TransportService.GetDeliveryTime(delivery.Place, delivery.Transport);

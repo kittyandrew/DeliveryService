@@ -9,7 +9,7 @@ namespace DeliveryService.Entity
         public double Size { get; set; }
         public double Weight { get; set; }
 
-        [ForeignKey("ProductTypeId")]
+        // [ForeignKey("ProductTypeId")]
         public virtual ProductType ProductType { get; set; }
         public int ProductTypeId { get; set; }
 

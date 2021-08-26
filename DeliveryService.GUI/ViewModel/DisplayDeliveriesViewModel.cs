@@ -29,6 +29,7 @@ namespace DeliveryService.GUI.ViewModel
 
         private void RepopulateDeliveries()
         {
+            // Don't re-assign the variable, because it's an ObservableCollection.
             Deliveries.Clear();
             foreach (Delivery deliveryModel in DeliveryService.GetAllDeliveries())
                 Deliveries.Add(deliveryModel);

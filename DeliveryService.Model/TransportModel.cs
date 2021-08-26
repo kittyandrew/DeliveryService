@@ -7,7 +7,6 @@ namespace DeliveryService.Model
     {
         public int Id { get; set; }
         public DateTime FreeBy { get; set; }
-
         public TransportTypeModel TransportTypeModel { get; set; }
     }
 }

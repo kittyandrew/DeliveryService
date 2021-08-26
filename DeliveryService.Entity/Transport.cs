@@ -8,7 +8,7 @@ namespace DeliveryService.Entity
         [Column(TypeName = "datetime2")]
         public DateTime FreeBy { get; set; }
 
-        [ForeignKey("TransportTypeId")]
+        // [ForeignKey("TransportTypeId")]
         public virtual TransportType TransportType { get; set; }
         public int TransportTypeId { get; set; }
 

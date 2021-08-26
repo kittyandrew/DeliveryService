@@ -110,6 +110,7 @@ namespace DeliveryService.Impl
                 _consoleWriter.Warn("Could not find a place with such ID");
                 return null;
             }
+
             Delivery delivery = _services.deliveryService.MakeDelivery(_product.First(), _place.First());
             _consoleWriter.Info("You've ordered a delivery");
             return delivery;
