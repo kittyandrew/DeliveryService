@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DeliveryService.GUI.Events
 {
-    public class SelectedDeliveryEvent : PubSubEvent<Delivery>
+    public class UpdateDeliveriesEvent : PubSubEvent
     {
 
     }

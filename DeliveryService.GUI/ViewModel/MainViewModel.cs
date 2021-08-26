@@ -21,10 +21,10 @@ namespace DeliveryService.GUI.ViewModel
 {
     public class MainViewModel : BaseViewModel
     {
-        private BaseViewModel _createDeliveryViewModel;
-        private BaseViewModel _cancelDeliveryViewModel;
+        private readonly DisplayDeliveriesViewModel displayDeliveriesViewModel;
+        private readonly BaseViewModel _createDeliveryViewModel;
+        private readonly BaseViewModel _cancelDeliveryViewModel;
         private BaseViewModel selectedViewModel;
-        private DisplayDeliveriesViewModel displayDeliveriesViewModel;
 
         public readonly IDeliveryService DeliveryService;
         public readonly IProductService ProductService;
@@ -53,18 +53,18 @@ namespace DeliveryService.GUI.ViewModel
             PlaceService = services.placeService;
 
             UpdateViewCommand = new RelayCommand(obj => ChangeViewModel(obj));
-            displayDeliveriesViewModel = new DisplayDeliveriesViewModel(eventAggregator, DeliveryService);
-            _createDeliveryViewModel = new CreateDeliveryViewModel(
-                EventAggregator, displayDeliveriesViewModel,
-                DeliveryService, ProductService, PlaceService
-            );
-            _cancelDeliveryViewModel = new CancelDeliveryViewModel(
-                EventAggregator, displayDeliveriesViewModel, DeliveryService
-            );
+
+            // We need to keep display view model as a variable, because it's always on the screen.
+            displayDeliveriesViewModel = new DisplayDeliveriesViewModel(eventAggregator, services);
+            
+            // Creating views that we are going to switch between.
+            _createDeliveryViewModel = new CreateDeliveryViewModel(eventAggregator, services);
+            _cancelDeliveryViewModel = new CancelDeliveryViewModel(eventAggregator, services);
         }
 
         private void ChangeViewModel(object parameter)
         {
+            // Handling command call from the view. We expect a string, ~name of the view model.
             switch (parameter.ToString())
             {
                 case "CreateDelivery":

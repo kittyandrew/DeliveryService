@@ -1,4 +1,5 @@
 ﻿using DeliveryService.BLL.Abstr.Services;
+using DeliveryService.BLL.Impl;
 using DeliveryService.Entity;
 using DeliveryService.GUI.Commands;
 using DeliveryService.GUI.Events;
@@ -14,32 +15,40 @@ namespace DeliveryService.GUI.ViewModel
 {
     public class CancelDeliveryViewModel : BaseViewModel
     {
-        private readonly DisplayDeliveriesViewModel DisplayDeliveriesViewModel;
         private readonly IDeliveryService DeliveryService;
         public RelayCommand CancelDeliveryCommand { get; private set; }
 
-        public CancelDeliveryViewModel(
-            IEventAggregator eventAggregator,
-            DisplayDeliveriesViewModel displayDeliveriesViewModel,
-            IDeliveryService deliveryService
-        ) : base(eventAggregator)
+        public CancelDeliveryViewModel(IEventAggregator eventAggregator, ServiceCollection services) : base(eventAggregator)
         {
-            DisplayDeliveriesViewModel = displayDeliveriesViewModel;
-            DeliveryService = deliveryService;
+            DeliveryService = services.deliveryService;
 
             CancelDeliveryCommand = new RelayCommand(obj => CancelDelivery());
         }
 
         private void CancelDelivery()
         {
+            // Making sure there is anything to cancel.
+            if (!VerifyDeliveryDataOrWarn()) return;
+
+            // Calling delivery service to cancel selected delivery.
+            DeliveryService.CancelDelivery(SelectedDelivery);
+
+            // Notifying DisplayDeliveries ViewModel that we want to re-render deliveries.
+            EventAggregator.GetEvent<UpdateDeliveriesEvent>().Publish();
+
+            // Notify user about the happy path.
+            MessageBox.Show("Your delivery was cancelled!", "Success!");
+        }
+
+        private bool VerifyDeliveryDataOrWarn()
+        {
             if (SelectedDelivery == null)
             {
                 MessageBox.Show("You have to choose delivery to cancel first!", "Warning!");
-                return;
+                return false;
             }
-            DeliveryService.CancelDelivery(SelectedDelivery);
-            DisplayDeliveriesViewModel.RepopulateDeliveries();
-            MessageBox.Show("Your delivery was cancelled!", "Success!");
+
+            return true;
         }
     }
 }
