@@ -9,6 +9,6 @@ namespace DeliveryService.DAL.Abstr.Repositories
         TEntity Get(TKey id);
         void Create(TEntity item);
         void Update(TEntity item);
-        void Delete(TKey id);
+        void Delete(TEntity item);
     }
 }

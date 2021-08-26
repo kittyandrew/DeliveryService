@@ -3,16 +3,20 @@ using DeliveryService.DAL.Abstr.Repositories;
 using DeliveryService.Entity;
 using System.Linq;
 using System;
+using DeliveryService.DAL.Impl.EF;
+using System.Data.Entity;
 
 namespace DeliveryService.DAL.Impl.Repositories
 {
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : Base<TKey>
     {
-        protected readonly ICollection<TEntity> DbSet;
+        private readonly DeliveryServiceContext context;
+        protected readonly DbSet<TEntity> DbSet;
 
-        public Repository()
+        public Repository(DeliveryServiceContext Context)
         {
-            DbSet = new List<TEntity>();
+            context = Context;
+            DbSet = context.Set<TEntity>();
         }
 
         public virtual void Create(TEntity entity)
@@ -22,24 +26,23 @@ namespace DeliveryService.DAL.Impl.Repositories
 
         public virtual TEntity Get(TKey id)
         {
-            return DbSet.Where(entity => entity.Id.Equals(id)).First();
+            return DbSet.Find(id);
         }
 
         public virtual ICollection<TEntity> GetAll()
         {
-            return DbSet;
+            return DbSet.ToList();
         }
 
-        // Hack to work with ICollection.
         public virtual void Update(TEntity entity)
         {
-            Delete(entity.Id);
-            Create(entity);
+            TEntity old = Get(entity.Id);
+            context.Entry(old).CurrentValues.SetValues(entity);
         }
 
-        public virtual void Delete(TKey id)
+        public virtual void Delete(TEntity entity)
         {
-            DbSet.Remove(Get(id));
+            DbSet.Remove(entity);
         }
     }
 

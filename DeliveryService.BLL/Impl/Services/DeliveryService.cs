@@ -36,7 +36,15 @@ namespace DeliveryService.BLL.Impl.Services
             transport.FreeBy = deliveryTime;
             UnitOfWork.Transports.Update(transport);
 
-            Delivery delivery = new Delivery(deliveryTime, place, transport, product);
+            Delivery delivery = new Delivery() {
+                DeliveryTime = deliveryTime,
+                Place = place,
+                PlaceId = place.Id,
+                Transport = transport,
+                TransportId = transport.Id,
+                Product = product,
+                ProductId = product.Id,
+            };
             
             UnitOfWork.Deliveries.Create(delivery);
             UnitOfWork.Save();
@@ -52,7 +60,7 @@ namespace DeliveryService.BLL.Impl.Services
                 UnitOfWork.Transports.Update(delivery.Transport);
             }
 
-            UnitOfWork.Deliveries.Delete(delivery.Id);
+            UnitOfWork.Deliveries.Delete(delivery);
             UnitOfWork.Save();
         }
     }

@@ -9,6 +9,7 @@ using DeliveryService.DAL.Impl.Repositories;
 using DeliveryService.DAL.Impl.UOW;
 using DeliveryService.BLL.Abstr.Services;
 using DeliveryService.BLL.Impl.Services;
+using DeliveryService.DAL.Impl.EF;
 
 namespace DeliveryService.BLL.Impl
 {
@@ -21,21 +22,23 @@ namespace DeliveryService.BLL.Impl
 
         public ServiceCollection()
         {
-            IDeliveryRepository deliveryRepository = new DeliveryRepository();
-            IPlaceRepository placeRepository = new PlaceRepository();
-            IProductRepository productRepository = new ProductRepository();
-            IProductTypeRepository productTypeRepository = new ProductTypeRepository();
-            ITransportRepository transportRepository = new TransportRepository();
-            ITransportTypeRepository transportTypeRepository = new TransportTypeRepository();
+            DeliveryServiceContext context = new DeliveryServiceContext();
+
+            IDeliveryRepository deliveryRepository = new DeliveryRepository(context);
+            IPlaceRepository placeRepository = new PlaceRepository(context);
+            IProductRepository productRepository = new ProductRepository(context);
+            IProductTypeRepository productTypeRepository = new ProductTypeRepository(context);
+            ITransportRepository transportRepository = new TransportRepository(context);
+            ITransportTypeRepository transportTypeRepository = new TransportTypeRepository(context);
+            ITransportForProductRepository transportForProductRepository = new TransportForProductRepository(context);
 
             IUnitOfWork unitOfWork = new UnitOfWork(
+                context,
                 placeRepository, transportRepository,
                 productRepository, transportTypeRepository,
-                productTypeRepository, deliveryRepository
+                productTypeRepository, deliveryRepository,
+                transportForProductRepository
             );
-
-            // Initializing test data.
-            unitOfWork.InitializeData();
 
             transportService = new TransportService(unitOfWork);
             placeService = new PlaceService(unitOfWork);

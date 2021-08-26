@@ -15,9 +15,8 @@ namespace DeliveryService.DAL.Abstr.UOW
         ITransportTypeRepository TransportTypes { get; }
         IProductRepository Products { get; }
         IProductTypeRepository ProductTypes { get; }
+        ITransportForProductRepository TransportForProducts { get; }
 
         void Save();
-
-        void InitializeData();
     }
 }
