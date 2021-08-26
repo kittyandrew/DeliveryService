@@ -32,7 +32,6 @@
     <Reference Include="Microsoft.Bcl.HashCode">
       <HintPath>..\DeliveryService\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
     </Reference>
-    <Reference Include="mscorlib" />
     <Reference Include="Microsoft.EntityFrameworkCore.Abstractions">
       <HintPath>..\DeliveryService\packages\Microsoft.EntityFrameworkCore.Abstractions.3.1.16\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
     </Reference>
@@ -49,6 +48,8 @@
       <HintPath>..\DeliveryService\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Numerics.Vectors">
       <HintPath>..\DeliveryService\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
@@ -135,17 +136,20 @@
     <Reference Include="Microsoft.EntityFrameworkCore.Sqlite">
       <HintPath>..\DeliveryService\packages\Microsoft.EntityFrameworkCore.Sqlite.Core.3.1.16\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Sqlite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProductTypeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlaceModel.cs" />
     <Compile Include="ProductModel.cs" />
+    <Compile Include="TransportForProductModel.cs" />
     <Compile Include="TransportModel.cs" />
     <Compile Include="TransportTypeModel.cs" />
     <Compile Include="DeliveryModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
