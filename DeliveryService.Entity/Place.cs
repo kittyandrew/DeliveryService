@@ -8,6 +8,11 @@ namespace DeliveryService.Entity
         public double Distance { get; set; }
         public double Traffic { get; set; }
 
+        public Place()
+        {
+
+        }
+
         public Place(string name, double distance, double traffic)
         {
             Name = name;

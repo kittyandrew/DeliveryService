@@ -12,6 +12,10 @@ namespace DeliveryService.Entity
         public virtual TransportType TransportType { get; set; }
         public int TransportTypeId { get; set; }
 
+        public Transport()
+        {
+
+        }
         public Transport(DateTime freeBy, int transportTypeId)
         {
             FreeBy = freeBy;

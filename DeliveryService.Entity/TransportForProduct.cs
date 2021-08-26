@@ -17,6 +17,10 @@ namespace DeliveryService.Entity
         public virtual ProductType ProductType { get; set; }
         public int ProductTypeId { get; set; }
 
+        public TransportForProduct()
+        {
+
+        }
         public TransportForProduct(int transportTypeId, int productTypeid)
         {
             TransportTypeId = transportTypeId;

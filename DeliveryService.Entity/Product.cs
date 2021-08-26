@@ -13,6 +13,10 @@ namespace DeliveryService.Entity
         public virtual ProductType ProductType { get; set; }
         public int ProductTypeId { get; set; }
 
+        public Product()
+        {
+
+        }
         public Product(string name, double size, double weight, int productTypeId)
         {
             Name = name;

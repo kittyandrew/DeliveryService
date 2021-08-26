@@ -7,7 +7,11 @@ namespace DeliveryService.Entity
     {
         public string Name { get; set; }
         public virtual ICollection<TransportForProduct> TransportForProducts { get; set; }
-        
+
+        public ProductType()
+        {
+
+        }
         public ProductType(string name)
         {
             Name = name;

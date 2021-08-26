@@ -9,6 +9,10 @@ namespace DeliveryService.Entity
         public double MaxWeight { get; set; }
         public double Speed { get; set; }
 
+        public TransportType()
+        {
+
+        }
         public TransportType(string name, double maxSize, double maxWeight, double speed)
         {
             Name = name;
