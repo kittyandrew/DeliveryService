@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DeliveryService.Entity;
+using DeliveryService.Model;
 using DeliveryService.BLL.Abstr.Services;
 using DeliveryService.DAL.Abstr.UOW;
 
@@ -15,11 +16,11 @@ namespace DeliveryService.BLL.Impl.Services
             UnitOfWork = unitOfWork;
         }
 
-        public TimeSpan GetDeliveryTime(Place place, Transport transport)
+        public TimeSpan GetDeliveryTime(PlaceModel placeModel, TransportModel transport)
         {
             // Here we calculate time (in hours) using vehicle speed, delivery place distance and its traffic coeff:
             return new TimeSpan((int)Math.Ceiling(
-                place.Distance / (transport.TransportType.Speed * Math.Pow(place.Traffic, place.Traffic))
+                placeModel.Distance / (transport.TransportTypeModel.Speed * Math.Pow(placeModel.Traffic, placeModel.Traffic))
             ), 0, 0);
             
         }

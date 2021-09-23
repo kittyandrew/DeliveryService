@@ -2,7 +2,7 @@
 using DeliveryService.BLL.Abstr.Services;
 using DeliveryService.DAL.Abstr;
 using DeliveryService.BLL.Impl;
-using DeliveryService.Entity;
+using DeliveryService.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +16,8 @@ namespace DeliveryService.Impl
         private readonly IConsoleWriter _consoleWriter;
         private readonly IConsoleReader _consoleReader;
         private readonly ServiceCollection _services;
-        private readonly ICollection<Product> products;
-        private readonly ICollection<Place> places;
+        private readonly ICollection<ProductModel> products;
+        private readonly ICollection<PlaceModel> places;
 
         public ConsoleUserInterface(
             ServiceCollection services,
@@ -36,7 +36,7 @@ namespace DeliveryService.Impl
         {
             bool running = true;
             char task;
-            Delivery delivery = null;
+            DeliveryModel delivery = null;
             while (running)
             {
                 _consoleWriter.ShowInstructions();
@@ -73,7 +73,7 @@ namespace DeliveryService.Impl
             }
         }
 
-        private Delivery OrderDelivery()
+        private DeliveryModel OrderDelivery()
         {
             int productId;
             try
@@ -86,7 +86,7 @@ namespace DeliveryService.Impl
                 return null;
             };
 
-            IEnumerable<Product> _product = products.Where(p => p.Id == productId);
+            IEnumerable<ProductModel> _product = products.Where(p => p.Id == productId);
             if (!_product.Any())
             {
                 _consoleWriter.Warn("Could not find a product with such ID");
@@ -104,14 +104,14 @@ namespace DeliveryService.Impl
                 return null;
             };
 
-            IEnumerable<Place> _place = places.Where(p => p.Id == placeId);
+            IEnumerable<PlaceModel> _place = places.Where(p => p.Id == placeId);
             if (!_place.Any())
             {
                 _consoleWriter.Warn("Could not find a place with such ID");
                 return null;
             }
 
-            Delivery delivery = _services.deliveryService.MakeDelivery(_product.First(), _place.First());
+            DeliveryModel delivery = _services.deliveryService.MakeDelivery(_product.First(), _place.First());
             _consoleWriter.Info("You've ordered a delivery");
             return delivery;
         }

@@ -1,6 +1,6 @@
 ﻿using DeliveryService.BLL.Abstr.Services;
 using DeliveryService.BLL.Impl;
-using DeliveryService.Entity;
+using DeliveryService.Model;
 using DeliveryService.GUI.Commands;
 using DeliveryService.GUI.Events;
 using Prism.Events;
@@ -20,15 +20,15 @@ namespace DeliveryService.GUI.ViewModel
         private readonly IProductService ProductService;
         private readonly IPlaceService PlaceService;
 
-        private Product selectedProduct;
-        private Place selectedPlace;
+        private ProductModel selectedProduct;
+        private PlaceModel selectedPlace;
 
-        public ObservableCollection<Place> Places { get; set; }
-        public ObservableCollection<Product> Products { get; set; }
+        public ObservableCollection<PlaceModel> Places { get; set; }
+        public ObservableCollection<ProductModel> Products { get; set; }
 
         public RelayCommand MakeDeliveryCommand { get; private set; }
 
-        public Product SelectedProduct
+        public ProductModel SelectedProduct
         {
             get => selectedProduct;
             set
@@ -37,7 +37,7 @@ namespace DeliveryService.GUI.ViewModel
                 OnPropertyChanged("SelectedProduct");
             }
         }
-        public Place SelectedPlace
+        public PlaceModel SelectedPlace
         {
             get => selectedPlace;
             set
@@ -53,8 +53,8 @@ namespace DeliveryService.GUI.ViewModel
             ProductService = services.productService;
             PlaceService = services.placeService;
 
-            Places = new ObservableCollection<Place>(PlaceService.GetAllPlaces());
-            Products = new ObservableCollection<Product>(ProductService.GetAllProducts());
+            Places = new ObservableCollection<PlaceModel>(PlaceService.GetAllPlaces());
+            Products = new ObservableCollection<ProductModel>(ProductService.GetAllProducts());
 
             MakeDeliveryCommand = new RelayCommand(obj => MakeDelivery());
         }
@@ -87,14 +87,14 @@ namespace DeliveryService.GUI.ViewModel
             return true;
         }
 
-        private string PrettyPrintNewDelivery(Delivery deliveryModel)
+        private string PrettyPrintNewDelivery(DeliveryModel deliveryModel)
         {
             return $"{"Arives at:",-13}{deliveryModel.DeliveryTime}\n"
-                 + $"{"Place:",-14}{deliveryModel.Place.Name}\n"
-                 + $"{"Distance:",-11}{deliveryModel.Place.Distance}\n"
-                 + $"{"Traffic %:",-13}{deliveryModel.Place.Traffic}\n"
-                 + $"{"Vehicle:",-13}{deliveryModel.Transport.TransportType.Name}\n"
-                 + $"{"Product:",-12}{deliveryModel.Product.Name}\n";
+                 + $"{"Place:",-14}{deliveryModel.PlaceModel.Name}\n"
+                 + $"{"Distance:",-11}{deliveryModel.PlaceModel.Distance}\n"
+                 + $"{"Traffic %:",-13}{deliveryModel.PlaceModel.Traffic}\n"
+                 + $"{"Vehicle:",-13}{deliveryModel.TransportModel.TransportTypeModel.Name}\n"
+                 + $"{"Product:",-12}{deliveryModel.ProductModel.Name}\n";
         }
     }
 }

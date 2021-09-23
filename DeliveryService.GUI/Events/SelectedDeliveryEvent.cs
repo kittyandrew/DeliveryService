@@ -1,4 +1,4 @@
-﻿using DeliveryService.Entity;
+﻿using DeliveryService.Model;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DeliveryService.GUI.Events
 {
-    public class SelectedDeliveryEvent : PubSubEvent<Delivery>
+    public class SelectedDeliveryEvent : PubSubEvent<DeliveryModel>
     {
 
     }

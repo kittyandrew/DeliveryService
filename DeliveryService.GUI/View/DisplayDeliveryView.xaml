@@ -24,11 +24,11 @@
                 <GridView>
                     <GridViewColumn Width="25" DisplayMemberBinding="{Binding Path=Id}">Id</GridViewColumn>
                     <GridViewColumn Width="140" DisplayMemberBinding="{Binding Path=DeliveryTime}">Arives at</GridViewColumn>
-                    <GridViewColumn Width="85" DisplayMemberBinding="{Binding Path=Place.Name}">Place</GridViewColumn>
-                    <GridViewColumn Width="85" DisplayMemberBinding="{Binding Path=Place.Distance}">Distance (km)</GridViewColumn>
-                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding Path=Place.Traffic}">Traffic %</GridViewColumn>
-                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Path=Transport.TransportType.Name}">Vehicle Type</GridViewColumn>
-                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding Path=Product.Name}">Product Name</GridViewColumn>
+                    <GridViewColumn Width="85" DisplayMemberBinding="{Binding Path=PlaceModel.Name}">Place</GridViewColumn>
+                    <GridViewColumn Width="85" DisplayMemberBinding="{Binding Path=PlaceModel.Distance}">Distance (km)</GridViewColumn>
+                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding Path=PlaceModel.Traffic}">Traffic %</GridViewColumn>
+                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Path=TransportModel.TransportTypeModel.Name}">Vehicle Type</GridViewColumn>
+                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding Path=ProductModel.Name}">Product Name</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

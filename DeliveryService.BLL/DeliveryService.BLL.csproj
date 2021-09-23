@@ -58,6 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstr\Services\IPlaceService.cs" />
+    <Compile Include="Impl\Mappers\DeliveryMapper.cs" />
+    <Compile Include="Impl\Mappers\PlaceMapper.cs" />
+    <Compile Include="Impl\Mappers\ProductMapper.cs" />
+    <Compile Include="Impl\Mappers\ProductTypeMapper.cs" />
+    <Compile Include="Impl\Mappers\TransportForProductMapper.cs" />
+    <Compile Include="Impl\Mappers\TransportMapper.cs" />
+    <Compile Include="Impl\Mappers\TransportTypeMapper.cs" />
     <Compile Include="Impl\ServiceCollection.cs" />
     <Compile Include="Impl\Services\PlaceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +83,10 @@
     <ProjectReference Include="..\DeliveryService.Entity\DeliveryService.Entity.csproj">
       <Project>{2b66f804-1c24-4df4-9a90-7a76b6183b2a}</Project>
       <Name>DeliveryService.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeliveryService.Model\DeliveryService.Model.csproj">
+      <Project>{54c8ec62-0496-4dfb-9493-ce5c65ef7834}</Project>
+      <Name>DeliveryService.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

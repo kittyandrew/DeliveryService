@@ -8,11 +8,5 @@ namespace DeliveryService.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<TransportForProductModel> TransportForProductModels { get; set; }
-
-        public ProductTypeModel()
-        {
-            TransportForProductModels = new List<TransportForProductModel>();
-        }
     }
 }

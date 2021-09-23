@@ -10,7 +10,8 @@ namespace DeliveryService.Model
     public class TransportForProductModel
     {
         public int Id;
-        public TransportTypeModel TransportType { get; set; }
+        // We have to avoid mapping recusrsion, so..
+        public TransportTypeModel TransportTypeModel { get; set; }
         public ProductTypeModel ProductTypeModel { get; set; }
     }
 }

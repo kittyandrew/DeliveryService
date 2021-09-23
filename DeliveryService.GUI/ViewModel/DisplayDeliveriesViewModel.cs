@@ -1,6 +1,6 @@
 ﻿using DeliveryService.BLL.Abstr.Services;
 using DeliveryService.BLL.Impl;
-using DeliveryService.Entity;
+using DeliveryService.Model;
 using DeliveryService.GUI.Events;
 using Prism.Events;
 using System;
@@ -16,12 +16,12 @@ namespace DeliveryService.GUI.ViewModel
     {
 
         private readonly IDeliveryService DeliveryService;
-        public ObservableCollection<Delivery> Deliveries { get; set; }
+        public ObservableCollection<DeliveryModel> Deliveries { get; set; }
         
         public DisplayDeliveriesViewModel(IEventAggregator eventAggregator, ServiceCollection services) : base(eventAggregator)
         {
             DeliveryService = services.deliveryService;
-            Deliveries = new ObservableCollection<Delivery>(DeliveryService.GetAllDeliveries());
+            Deliveries = new ObservableCollection<DeliveryModel>(DeliveryService.GetAllDeliveries());
 
             // Managing events for deliveries re-render.
             EventAggregator.GetEvent<UpdateDeliveriesEvent>().Subscribe(RepopulateDeliveries, true);
@@ -31,7 +31,7 @@ namespace DeliveryService.GUI.ViewModel
         {
             // Don't re-assign the variable, because it's an ObservableCollection.
             Deliveries.Clear();
-            foreach (Delivery deliveryModel in DeliveryService.GetAllDeliveries())
+            foreach (DeliveryModel deliveryModel in DeliveryService.GetAllDeliveries())
                 Deliveries.Add(deliveryModel);
 
             // Always set last added element as "selected", if it's present.

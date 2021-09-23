@@ -9,5 +9,6 @@ namespace DeliveryService.DAL.Abstr.Repositories
 {
     public interface ITransportForProductRepository : IRepository<TransportForProduct, int>
     {
+        ICollection<TransportForProduct> GetAllForProductType(ProductType productType);
     }
 }

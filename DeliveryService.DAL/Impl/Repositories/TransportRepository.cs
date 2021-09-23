@@ -2,6 +2,7 @@
 using DeliveryService.DAL.Impl.Repositories;
 using DeliveryService.Entity;
 using System.Linq;
+using System.Data.Entity;
 using DeliveryService.DAL.Impl.EF;
 using System;
 
@@ -21,7 +22,7 @@ namespace DeliveryService.DAL.Abstr.Repositories
                 t => Ids.Contains(t.TransportType.Id)
                   && t.TransportType.MaxSize >= product.Size
                   && t.TransportType.MaxWeight >= product.Weight
-            )
+                )
                 .OrderBy(t => t.FreeBy)
                 .ThenBy(t => t.TransportType.MaxSize)
                 .ThenBy(t => t.TransportType.MaxWeight)

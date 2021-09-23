@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using DeliveryService.Entity;
+using DeliveryService.Model;
 
 namespace DeliveryService.BLL.Abstr.Services
 {
     public interface IProductService
     {
-        ICollection<Product> GetAllProducts();
+        ICollection<ProductModel> GetAllProducts();
     }
 }

@@ -10,7 +10,7 @@ using System.Windows;
 using DeliveryService.BLL.Abstr;
 using System.Windows.Controls;
 using DeliveryService.BLL.Abstr.Services;
-using DeliveryService.Entity;
+using DeliveryService.Model;
 using Prism.Events;
 using DeliveryService.GUI.Events;
 
@@ -19,8 +19,8 @@ namespace DeliveryService.GUI.ViewModel
     public class BaseViewModel : INotifyPropertyChanged
     {
         protected readonly IEventAggregator EventAggregator;
-        private Delivery selectedDelivery { get; set; }
-        public Delivery SelectedDelivery
+        private DeliveryModel selectedDelivery { get; set; }
+        public DeliveryModel SelectedDelivery
         {
             get => selectedDelivery;
             set

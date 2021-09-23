@@ -1,10 +1,11 @@
 ﻿using System;
 using DeliveryService.Entity;
+using DeliveryService.Model;
 
 namespace DeliveryService.BLL.Abstr.Services
 {
     public interface ITransportService
     {
-        TimeSpan GetDeliveryTime(Place place, Transport transport);
+        TimeSpan GetDeliveryTime(PlaceModel placeModel, TransportModel transportModel);
     }
 }

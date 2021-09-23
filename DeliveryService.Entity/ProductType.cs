@@ -10,7 +10,7 @@ namespace DeliveryService.Entity
 
         public ProductType()
         {
-
+            TransportForProducts = new List<TransportForProduct>();
         }
         public ProductType(string name)
         {

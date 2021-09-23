@@ -1,5 +1,5 @@
 ﻿using DeliveryService.Abstr;
-using DeliveryService.Entity;
+using DeliveryService.Model;
 using System;
 using DeliveryService.BLL.Abstr.Services;
 using System.Collections.Generic;
@@ -22,12 +22,12 @@ namespace DeliveryService.Impl
             Console.WriteLine("q: Exit application");
         }
 
-        public void ShowPlaces(IEnumerable<Place> place)
+        public void ShowPlaces(IEnumerable<PlaceModel> placeModels)
         {
             Console.WriteLine("========== Available places ==========");
             Console.WriteLine($"{"Id",-5} | {"Name", -15} | {"Distance (km)",-5}");
             Console.WriteLine("--------------------------------------");
-            foreach (Place placeModel in place)
+            foreach (PlaceModel placeModel in placeModels)
             {
                 Console.WriteLine(
                     $"{placeModel.Id, -5} | {placeModel.Name, -15} | {placeModel.Distance, -5}"
@@ -36,25 +36,25 @@ namespace DeliveryService.Impl
             Console.WriteLine("======================================");
         }
 
-        public void ShowProducts(IEnumerable<Product> products)
+        public void ShowProducts(IEnumerable<ProductModel> products)
         {
             Console.WriteLine("=== Available products ===");
             Console.WriteLine($"{"Id",-5} | {"Name",-15}");
             Console.WriteLine("--------------------------");
-            foreach (Product product in products)
+            foreach (ProductModel productModel in products)
             {
-                Console.WriteLine($"{product.Id, -5} | {product.Name, -15}");
+                Console.WriteLine($"{productModel.Id, -5} | {productModel.Name, -15}");
             }
             Console.WriteLine("===========================");
         }
 
-        public void ShowDelivery(Delivery delivery)
+        public void ShowDelivery(DeliveryModel deliveryModel)
         {
             Console.WriteLine("============== Your delivery ==============");
-            Console.WriteLine($"{"Id:",-15}{delivery.Id}");
-            Console.WriteLine($"{"Product:",-15}{delivery.Product.Name}");
-            Console.WriteLine($"{"Place:", -15}{delivery.Place.Name}");
-            Console.WriteLine($"Expected time: {delivery.DeliveryTime}");
+            Console.WriteLine($"{"Id:",-15}{deliveryModel.Id}");
+            Console.WriteLine($"{"Product:",-15}{deliveryModel.ProductModel.Name}");
+            Console.WriteLine($"{"Place:", -15}{deliveryModel.PlaceModel.Name}");
+            Console.WriteLine($"Expected time: {deliveryModel.DeliveryTime}");
             Console.WriteLine("===========================================");
         }
 

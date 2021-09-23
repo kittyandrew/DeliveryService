@@ -84,9 +84,9 @@
       <Project>{b751a914-c2b8-48fb-b4e7-ac936c33cc5e}</Project>
       <Name>DeliveryService.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DeliveryService.Entity\DeliveryService.Entity.csproj">
-      <Project>{2B66F804-1C24-4DF4-9A90-7A76B6183B2A}</Project>
-      <Name>DeliveryService.Entity</Name>
+    <ProjectReference Include="..\DeliveryService.Model\DeliveryService.Model.csproj">
+      <Project>{54c8ec62-0496-4dfb-9493-ce5c65ef7834}</Project>
+      <Name>DeliveryService.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
